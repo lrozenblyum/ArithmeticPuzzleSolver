@@ -1,0 +1,15 @@
+						Arithmetic Puzzle Solver APZ
+
+[!] Important notice
+[+] New feature
+[-] Bug fixed
+[*] Change
+
+
+---------------------------------------------------------------------------
+APZ 0.1.0 (First public release)
+[+] Addition puzzle solving using brute-force algorithm
+---------------------------------------------------------------------------
+										
+										[APZ development group:
+											Leonid Rozenblyum aka leokom]
