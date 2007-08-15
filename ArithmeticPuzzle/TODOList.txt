@@ -1,0 +1,6 @@
+TODO - priority (less earlier).
+
+Can solve not only "+" puzzles but "-", "*", "/". Maybe more?
+Can use not only ciphered but digital input (e.g. Hello + 5 = NeoNeo)
+Optimize algorithm - change brute-force to euristic (or in parallel)
+Can solve puzzles of > 3 parameters (e.g. sum of 3 values)

@@ -1,13 +1,16 @@
 						Arithmetic Puzzle Solver APZ
-
+							History of changes
 [!] Important notice
 [+] New feature
 [-] Bug fixed
 [*] Change
 
-
 ---------------------------------------------------------------------------
-APZ 0.1.0 (First public release)
+APZ 0.1.1 (15 Aug 2007)
+[!] Program is packed into jar file; it's started using java -jar
+---------------------------------------------------------------------------
+APZ 0.1.0 (12 Aug 2007)
+[!] First public release
 [+] Addition puzzle solving using brute-force algorithm
 ---------------------------------------------------------------------------
 										
