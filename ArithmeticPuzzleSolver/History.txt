@@ -5,6 +5,13 @@
 [-] Bug fixed
 [*] Change
 
+APZ 0.2.1 (24 Nov 2007)
+[!] Packaging to jar file implemented in JBoss-IDE
+---------------------------------------------------------------------------
+APZ 0.2.0 (18 Nov 2007)
+[+] Added solving of puzzles with operations subtraction, multiplication, division
+[!] Development migrated to JBoss-IDE
+[*] Minor code improvements
 ---------------------------------------------------------------------------
 APZ 0.1.1 (15 Aug 2007)
 [!] Program is packed into jar file; it's started using java -jar

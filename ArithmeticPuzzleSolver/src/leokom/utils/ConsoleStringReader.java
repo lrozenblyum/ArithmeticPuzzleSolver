@@ -33,4 +33,25 @@ public class ConsoleStringReader {
 		}
 		return consoleInput;
 	}
+	
+	/**
+	 * Reads char from the console.
+	 * @return char
+	 */
+	public static char readChar() {
+		final char DEFAULT_CHARACTER = '\0';
+		String stringFromConsole = readString();
+		if ( stringFromConsole != null && stringFromConsole.length() >= 1 ) {
+			return stringFromConsole.toCharArray()[ 0 ];
+		}
+		else
+			return DEFAULT_CHARACTER;
+//		char consoleCharacter = '\0';
+//		try {
+//			consoleCharacter = (char) bufferedReader.read();
+//		} catch (IOException e) {
+//			 System.out.println( "Exception caught while reading char from std in \n" + e );
+//		}
+//		return consoleCharacter;
+	}
 }

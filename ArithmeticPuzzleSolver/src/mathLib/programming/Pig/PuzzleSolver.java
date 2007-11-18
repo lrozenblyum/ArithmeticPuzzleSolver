@@ -1,10 +1,3 @@
-/**
- * This class should solve additive 2-argument arithmetic puzzles of kind:
- * 	SEND
- * +MORE
- * -----
- * MONEY
- */
 package mathLib.programming.Pig;
 
 import java.util.ArrayList;
@@ -15,7 +8,7 @@ import leokom.utils.DigitsMapImpl;
 import leokom.utils.DigitsOrderedMap;
 
 /**
- * This class should solve additive 2-argument arithmetic puzzles.
+ * This class should solve 2-argument arithmetic puzzles.
  * E.g.
  * 	SEND
  * +MORE
@@ -24,32 +17,46 @@ import leokom.utils.DigitsOrderedMap;
  */
 public class
 
-AdditionPuzzleSolver {
+PuzzleSolver {
 
-	private static final String FIRST_ADDENDUM = "first addendum";
-	private static final String SECOND_ADDENDUM = "second addendum";
-	private static final String SUM = "sum";
+	private static final int FIRST_OPERAND_NUMBER = 1;
+	private static final int SECOND_OPERAND_NUMBER = 2;
+	private static final String OPERAND = "operand";
+	private static final String OPERATION = "operation";
+	private static final int RESULT_NUMBER = 0;
 	private static final int NUMBER_SYSTEM_MULTIPLICATOR = 10; //for decimal
+	
+	
+	/**
+	 * Get operand name by its number. (Sum or other result has number 0)
+	 * @return
+	 */
+	private String getOperandName( int operandNumber ) {
+		return OPERAND + operandNumber;
+	}
 	/**
 	 * Receive needed data from user (using keyboard)
 	 * @return hash map of strings received from the user
 	 */
 	HashMap<String, String> getInputData() {
-		HashMap result = new HashMap();
-		System.out.println("Input first addendum");
+		HashMap inputData = new HashMap();
+		System.out.println("Input first operand");
 		String firstAddendum = ConsoleStringReader.readString();
-	    result.put( FIRST_ADDENDUM, firstAddendum );
+	    inputData.put( getOperandName( FIRST_OPERAND_NUMBER ), firstAddendum );
 		
+		System.out.println( "Input operation ( + - * / )" );
+		Character operation = ConsoleStringReader.readChar();
+		inputData.put( OPERATION, operation );
 		
-		System.out.println( "Input second addendum" );
+		System.out.println( "Input second operand" );
 		String secondAddendum = ConsoleStringReader.readString();
-		result.put( SECOND_ADDENDUM, secondAddendum );
+		inputData.put( getOperandName( SECOND_OPERAND_NUMBER ), secondAddendum );
 		
-		System.out.println( "Input sum" );
-		String sum = ConsoleStringReader.readString();
-		result.put( SUM, sum );
+		System.out.println( "Input result" );
+		String result = ConsoleStringReader.readString();
+		inputData.put( getOperandName( RESULT_NUMBER ), result );
 		 
-		return result;
+		return inputData;
 	}
 
 	/**
@@ -71,9 +78,9 @@ AdditionPuzzleSolver {
 	 */
 	private DigitsOrderedMap parseInputIntoDigits( HashMap inputArguments ) {
 		DigitsOrderedMap digitsMap = new DigitsMapImpl();
-		addStringIntoDigitsMap( (String) inputArguments.get( FIRST_ADDENDUM ), digitsMap );
-	    addStringIntoDigitsMap( (String) inputArguments.get( SECOND_ADDENDUM ), digitsMap );
-		addStringIntoDigitsMap( (String) inputArguments.get( SUM ), digitsMap );
+		addStringIntoDigitsMap( (String) inputArguments.get( getOperandName( FIRST_OPERAND_NUMBER ) ), digitsMap );
+	    addStringIntoDigitsMap( (String) inputArguments.get( getOperandName( SECOND_OPERAND_NUMBER ) ), digitsMap );
+		addStringIntoDigitsMap( (String) inputArguments.get( getOperandName( RESULT_NUMBER ) ), digitsMap );
 		return digitsMap;
 	}
 	
@@ -93,8 +100,56 @@ AdditionPuzzleSolver {
 		return result;
 	}
 	
+	/**
+	 * Perform binary operation on operands.
+	 * @param firstOperand
+	 * @param secondOperand
+	 * @param operation
+	 * @return
+	 */
+	int performOperation( int firstOperand, int secondOperand, char operation ) {
+		int operationResult;
+		switch ( operation ) {
+			case '+':
+				operationResult = firstOperand + secondOperand;
+				break;
+		    case '-':
+		        operationResult = firstOperand - secondOperand;
+		        break;
+		    case '*':
+		        operationResult = firstOperand * secondOperand;
+		        break;
+		    case '/':
+				if ( firstOperand % secondOperand != 0 )
+					throw new ArithmeticException( "First operand should be evenly divisible on second" );
+		        operationResult = firstOperand / secondOperand;
+		        break;
+			default:
+				//TODO: check if default behaviour is correct - use sum by default
+				operationResult = firstOperand + secondOperand;
+		}
+		return operationResult;
+	}
 	
-	
+	/**
+	 * Check if parameters form solution of the puzzle.
+	 * @param firstOperand
+	 * @param secondOperand
+	 * @param result
+	 * @param operation
+	 * @return true if solution found
+	 */
+	private boolean isSolutionFound( int firstOperand, int secondOperand, int result, char operation ) {
+	    boolean isSolutionFound = false;
+		try {
+			isSolutionFound = result == performOperation( firstOperand, secondOperand, operation );		
+		}
+		catch ( ArithmeticException ex) {
+			//do nothing; for division exception
+			//isSolutionFound = false;
+		}
+		return isSolutionFound;
+	}
 	
 	/**
 	 * Solve the puzzle if possible.
@@ -106,14 +161,14 @@ AdditionPuzzleSolver {
 		// parse valuable input arguments into pairs char -> digit (of course digit is unknown ^-)
 		DigitsOrderedMap digitsMap = parseInputIntoDigits( inputArguments );
 		
-	    //create first, second arg and the sum
-	    String firstAddendumString = (String)inputArguments.get( FIRST_ADDENDUM );
-	    String secondAddendumString = (String)inputArguments.get( SECOND_ADDENDUM );
-	    String sumString = (String)inputArguments.get( SUM );
+	    //create first, second arg and the result
+	    String firstAddendumString = (String)inputArguments.get( getOperandName( FIRST_OPERAND_NUMBER ) );
+	    String secondAddendumString = (String)inputArguments.get( getOperandName( SECOND_OPERAND_NUMBER ) );
+	    String resultString = (String)inputArguments.get( getOperandName( RESULT_NUMBER ) );
 		
 		int firstAddendumStringLength = firstAddendumString.length();
 		int secondAddendumStringLength = secondAddendumString.length();
-		int sumStringLength = sumString.length();
+		int resultStringLength = resultString.length();
 		
 		// for each combination of digits in the hashmap
 		while ( digitsMap.gotoNextSequence() ) {
@@ -132,22 +187,23 @@ AdditionPuzzleSolver {
 		    if ( secondAddendumNumberString.length() != secondAddendumStringLength )
 		        continue;
 		    
-		    int sum = fillInStringFromDigitsMap( sumString, digitsMap );
+		    int result = fillInStringFromDigitsMap( resultString, digitsMap );
 		    //using "pseudo-standard" hack for converting int to string
-			String sumNumberString = sum + "";
+			String resultNumberString = result + "";
 		    //ensure that first digit isn't zero
-		    if ( sumNumberString.length() != sumStringLength )
+		    if ( resultNumberString.length() != resultStringLength )
 		        continue;
 			
-			//check if the sum is correct -
-			if ( sum == firstAddendum + secondAddendum ) {
+			Character operation = (Character)inputArguments.get( OPERATION );
+			//check if the result is correct -
+			if ( isSolutionFound( firstAddendum, secondAddendum, result, operation ) ) {
 			    // if yes - fill in the result, return it
 				HashMap <String, String> puzzleSolution = new HashMap<String, String>();
 				
 				
-				puzzleSolution.put( FIRST_ADDENDUM, firstAddendumNumberString );
-			    puzzleSolution.put( SECOND_ADDENDUM, secondAddendumNumberString );
-			    puzzleSolution.put( SUM, sumNumberString );
+				puzzleSolution.put( getOperandName( FIRST_OPERAND_NUMBER ), firstAddendumNumberString );
+			    puzzleSolution.put( getOperandName( SECOND_OPERAND_NUMBER ), secondAddendumNumberString );
+			    puzzleSolution.put( getOperandName( RESULT_NUMBER ), resultNumberString );
 				solutions.add( puzzleSolution );
 			}
 			// if no - go to next combination
@@ -165,9 +221,9 @@ AdditionPuzzleSolver {
 		System.out.println( "Found " + ( solutions != null ? solutions.size() : 0 ) + " solutions of the puzzle." );
 			for ( HashMap<String,String> result : solutions ) {
 				System.out.println( "-----" );
-				System.out.println( "First addendum: " + result.get( FIRST_ADDENDUM ) );			
-				System.out.println( "Second addendum: " + result.get( SECOND_ADDENDUM ) );            
-				System.out.println( "Sum: " + result.get( SUM ) );            
+				System.out.println( "First operand: " + result.get( getOperandName( FIRST_OPERAND_NUMBER ) ) );			
+				System.out.println( "Second operand: " + result.get( getOperandName( SECOND_OPERAND_NUMBER ) ) );            
+				System.out.println( "Result: " + result.get( getOperandName( RESULT_NUMBER ) ) );            
 			    System.out.println( "-----" );
 			}
 	}
@@ -177,7 +233,7 @@ AdditionPuzzleSolver {
 	 * @param args arguments from command line
 	 */
 	public static void main(String[] args) {
-		AdditionPuzzleSolver additionPuzzleSolver = new AdditionPuzzleSolver();
+		PuzzleSolver additionPuzzleSolver = new PuzzleSolver();
 		//receive input from the user
 		HashMap inputArguments = additionPuzzleSolver.getInputData();
 

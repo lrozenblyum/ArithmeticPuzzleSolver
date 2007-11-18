@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+<archive destination="" exploded="false" name="Untitled.jar" used="false">
+<folder excludes="" includes="*.class" location="classes" name="classes" prefix="" project="" projectLocation="classes" used="true"/>
+<folder excludes="" includes="MANIFEST.MF" location="classes/META-INF" name="META-INF" prefix="" project="" projectLocation="classes/META-INF" used="true"/>
+</archive>
+</configurations>
