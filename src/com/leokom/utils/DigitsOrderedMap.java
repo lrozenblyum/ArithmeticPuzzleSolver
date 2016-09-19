@@ -1,4 +1,4 @@
-package leokom.utils;
+package com.leokom.utils;
 
 /**
  * Represent "map" of chars and digits.

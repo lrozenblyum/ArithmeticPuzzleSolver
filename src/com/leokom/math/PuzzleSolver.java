@@ -1,11 +1,11 @@
-package mathLib.programming.Pig;
+package com.leokom.math;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import leokom.utils.ConsoleStringReader;
-import leokom.utils.DigitsMapImpl;
-import leokom.utils.DigitsOrderedMap;
+import com.leokom.utils.ConsoleStringReader;
+import com.leokom.utils.DigitsMapImpl;
+import com.leokom.utils.DigitsOrderedMap;
 
 /**
  * This class should solve 2-argument arithmetic puzzles.
