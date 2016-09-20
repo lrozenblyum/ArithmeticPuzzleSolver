@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.leokom</groupId>
   <artifactId>ArithmeticPuzzleSolver</artifactId>
-  <version>0.2.2</version>
+  <version>0.2.2-SNAPSHOT</version>
   <scm>
 	<connection>scm:git:git@github.com:lrozenblyum/ArithmeticPuzzleSolver.git</connection>
 	<url>scm:git:git@github.com:lrozenblyum/ArithmeticPuzzleSolver.git</url>
