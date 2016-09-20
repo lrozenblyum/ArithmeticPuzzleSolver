@@ -5,6 +5,13 @@
 [-] Bug fixed
 [*] Change
 
+APZ 0.2.2 (20 Sep 2016)
+
+[*] Migrated to GitHub
+[*] Eclipse Maven integration
+[*] Maven release for Git
+
+
 APZ 0.2.1 (24 Nov 2007)
 [!] Packaging to jar file implemented in JBoss-IDE
 ---------------------------------------------------------------------------
