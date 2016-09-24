@@ -93,10 +93,7 @@ public class DigitsMapImpl implements DigitsOrderedMap{
 	public void reInitSequence() {
 		putIsAllowed = true;
 		//TODO: check what new initializations are needed
-//		for ( int digitIndex = 0; digitIndex < digits.length; digitIndex++ ) {
-//			digits[ digitIndex  ] = 0;
-//		}
-//		
+	
 		allocationIndex = 0;
 		
 	    calculateAllocationsCount();

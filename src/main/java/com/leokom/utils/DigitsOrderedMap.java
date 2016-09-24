@@ -4,13 +4,6 @@ package com.leokom.utils;
  * Represent "map" of chars and digits.
  */
 public interface DigitsOrderedMap {
-//	/**
-//	 * Add (char->digit) pair to the map (change if exists).
-//	 * @param character - any character
-//	 * @param digit - any digit (0-9)
-//	 */
-//	void put( char character, byte digit );
-	
 	/**
 	 * Put character to the map, digit value is undefined.
 	 * @param character character
