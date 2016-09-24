@@ -229,24 +229,20 @@ PuzzleSolver {
 	}
 
 	/**
-	 * Solve the additive 2-argument arithmetic puzzle.
+	 * Solve a 2-argument arithmetic puzzle (for basic operations).
 	 * @param args arguments from command line
 	 */
 	public static void main(String[] args) {
-		PuzzleSolver additionPuzzleSolver = new PuzzleSolver();
+		PuzzleSolver puzzleSolver = new PuzzleSolver();
 		//receive input from the user
-		HashMap inputArguments = additionPuzzleSolver.getInputData();
+		HashMap inputArguments = puzzleSolver.getInputData();
 
 		//solve the puzzle
-		ArrayList<HashMap<String, String>> solvedPuzzle = additionPuzzleSolver.solvePuzzle( inputArguments );
+		ArrayList<HashMap<String, String>> solvedPuzzle = puzzleSolver.solvePuzzle( inputArguments );
 		
 		//output the result (if exists) - else show error
-		additionPuzzleSolver.outputResult( solvedPuzzle );
+		puzzleSolver.outputResult( solvedPuzzle );
 		
 		System.out.println( "Bye-bye! See you next time!" );
-
 	}
-
-
-
 }
