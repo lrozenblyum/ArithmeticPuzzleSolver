@@ -119,6 +119,9 @@ public class DigitsMapImpl implements DigitsOrderedMap{
 	    allocationsCount = 1;
 		final int totalDigitsCount = NUMBER_SYSTEM_MULTIPLICATOR;
 		int digitsInArrayCount = digits.size();
+		if ( digitsInArrayCount == 0 ) {
+			allocationsCount = 0;
+		}
 		if ( totalDigitsCount < digitsInArrayCount )
 			throw new IllegalStateException( "NUMBER_SYSTEM_MULTIPLICATOR constant is too small. It needs to be at least = " + digitsInArrayCount ) ;
 	    for (
